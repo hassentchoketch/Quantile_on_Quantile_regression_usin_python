@@ -31,7 +31,7 @@ def imf_data_query(series_codes = None, country_codes = None ,frequency=None, st
           # Navigate to series in API-returned JSON data
           series = (requests.get(f"{url}{key}").json()["CompactData"]["DataSet"]["Series"])
           df[s_code + '_'+c_code ] = [obs.get("@OBS_VALUE") for obs in series["Obs"]]
-   df.index = pd.to_datetime([obs.get("@TIME_PERIOD") for obs in series["Obs"]])
+   df['date'] = pd.to_datetime([obs.get("@TIME_PERIOD") for obs in series["Obs"]])
    df.to_csv(cwd +'\\data.csv')
    return df 
 
@@ -44,4 +44,4 @@ results = get_imf_series_codes(search_terms=search_term)
 series_codes = ['PCPI_IX','NGDP_R_SA_XDC']
 country_codes = ['US','GB']
 df = imf_data_query(series_codes=series_codes , country_codes=country_codes,frequency= 'Q', start_period= '1990' ,end_eriod= '2021')
-print(df)
+# print(df)
