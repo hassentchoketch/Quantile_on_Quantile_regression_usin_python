@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np 
 import statsmodels.formula.api as smf
 import matplotlib.pyplot as plt 
-import plotly.graph_objects as go
+
 
 def Q_QR(df= None , x= None, y=None,path= None,quarters=np.arange(0.01,0.9,0.05), plot = True):
   df1=df[[x,y]]
@@ -42,17 +42,16 @@ def Q_QR(df= None , x= None, y=None,path= None,quarters=np.arange(0.01,0.9,0.05)
     ax2.set_zlabel('Intercept')
     plt.title(f'Quantile-on-Quantile Process for the {df.columns[0]}  Coefficients',fontdict = {'fontsize': 18,'fontweight': 16})
     plt.tight_layout()
+    fig.savefig(path + '\\plot.png')
     plt.show()
-    fig.savefig(path + '/plot.png')
     slopes =pd.DataFrame(matrix_slope)
     intercepts = pd.DataFrame(matrix_intercept)
-    slopes.to_csv(path+'/slopes.csv')
-    intercepts.to_csv(path+'/intercepts.csv')
+    slopes.to_csv(path+'\\slopes.csv')
+    intercepts.to_csv(path+'\\intercepts.csv')
   return slopes ,intercepts
 
 
 cwd = os.getcwd()
-df = pd.read_csv('data.csv').drop(columns ='Unnamed: 0').set_index('date')
+df = pd.read_csv(f'C:\Users\Hassen\Desktop\Quantile_on_Quantile_regression_usin_python\data.csv').drop(columns ='Unnamed: 0').set_index('date')
 df_slopes,df_interceptes = Q_QR(df = df,x ='NGDP_R_SA_XDC_US',y ='PCPI_IX_US', path = cwd)
-
-print (cwd)
+print(cwd)
