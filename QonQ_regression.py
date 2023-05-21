@@ -4,7 +4,6 @@ import numpy as np
 import statsmodels.formula.api as smf
 import matplotlib.pyplot as plt 
 
-
 def Q_QR(df= None , x= None, y=None,path= None,quarters=np.arange(0.01,0.9,0.05), plot = True):
   df1=df[[x,y]]
   slope_results = []
@@ -49,7 +48,6 @@ def Q_QR(df= None , x= None, y=None,path= None,quarters=np.arange(0.01,0.9,0.05)
     slopes.to_csv(path+'\\slopes.csv')
     intercepts.to_csv(path+'\\intercepts.csv')
   return slopes ,intercepts
-
 
 cwd = os.getcwd()
 df = pd.read_csv(f'C:\Users\Hassen\Desktop\Quantile_on_Quantile_regression_usin_python\data.csv').drop(columns ='Unnamed: 0').set_index('date')

@@ -44,4 +44,5 @@ results = get_imf_series_codes(search_terms=search_term)
 series_codes = ['PCPI_IX','NGDP_R_SA_XDC']
 country_codes = ['US','GB']
 df = imf_data_query(series_codes=series_codes , country_codes=country_codes,frequency= 'Q', start_period= '1955' ,end_eriod= '2021')
+
 # print(df)
